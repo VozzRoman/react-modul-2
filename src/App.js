@@ -26,14 +26,20 @@ class App extends Component {
 		],
 	}
 
-	deleteToDo = todoId => {
-		this.setState(prevStae => ({
-			
+	deleteToDo = todoId => { // создаем методкласса для удаления туду по Айди
+		this.setState(prevStae => ({ // функция от предидущего
+      todolist: prevStae.todolist.filter(todo => { //фильтурем массив по айди
+        return todo.id !== todoId
+      })
 		}))
 	}
 
 	render() {
-		const {todolist} = this.state // destructurisation
+    const { todolist } = this.state // destructurisation
+    const completedToDo = todolist.reduce((total, totdo) => {
+      return totdo.compledted ? total + 1 : total
+    }, 0)
+    console.log(completedToDo);
 		return (
 	<>
       <h1>Состояние компонента</h1>
@@ -41,7 +47,11 @@ class App extends Component {
       <CounterTow initialValue={10} />
       <DropDown />
       <ColorPicker option={colorPickerOption} /> */}
-      <ToDoList todolist={todolist}/>
+        <ToDoList todolist={todolist} onDeleteToDo={this.deleteToDo} /> 
+        <p>Количество: {todolist.length}</p>
+        <p>Количество выполненых: {completedToDo}</p>
+        
+        {/* //передаем методкласса удаления туду в пропс */}
     </>
 		)
 	}

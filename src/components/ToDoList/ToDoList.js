@@ -1,12 +1,12 @@
 import React from "react";
 
-const ToDoList = ({todolist}) => {
+const ToDoList = ({todolist, onDeleteToDo}) => {
     return (
 		 <ul>
 			 {todolist.map(todo => (
 				 <li key={todo.id}>
 					 <p>{todo.text}</p>
-					 <button>Удалить</button>
+					 <button onClick={() => onDeleteToDo(todo.id)}>Удалить</button>
 				 </li>
 			 ))}
 		  </ul>
