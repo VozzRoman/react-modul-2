@@ -1,24 +1,26 @@
-import logo from './logo.svg';
+import React from 'react';
+import CounterTow from './components/CounterTwo/CounterTow';
+import Counter from './components/Counter/Counter';
+import ColorPicker from './components/ColorPicker/ColorPicker';
 import './App.css';
+import DropDown from './components/DropDown/DropDown';
 
-function App() {
+const colorPickerOption = [
+  { lable: "red", color: "red" },
+  { lable: "green", color: "green" },
+  { lable: "blue", color: "blue" },
+  { lable: "gray", color: "gray"},
+]
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <h1>Состояние компонента</h1>
+      <Counter initialValue={10} /> 
+      <CounterTow initialValue={10} />
+      <DropDown />
+      <ColorPicker option={colorPickerOption} />
+    </>
   );
 }
 
