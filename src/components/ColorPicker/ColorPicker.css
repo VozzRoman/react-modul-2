@@ -3,5 +3,12 @@
     width: 100px;
     height: 100px;
     display: inline-block;
+    cursor: pointer;
+    border: none;
+    transition: transform 250ms linear;
 
+}
+
+.Color__pickker-option--active{
+    transform: scale(1.1);
 }

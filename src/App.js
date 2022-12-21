@@ -4,6 +4,7 @@ import Counter from './components/Counter/Counter';
 import ColorPicker from './components/ColorPicker/ColorPicker';
 import './App.css';
 import DropDown from './components/DropDown/DropDown';
+import ToDoList from './components/ToDoList';
 
 const colorPickerOption = [
   { lable: "red", color: "red" },
@@ -20,6 +21,7 @@ const App = () => {
       <CounterTow initialValue={10} />
       <DropDown />
       <ColorPicker option={colorPickerOption} />
+      <ToDoList/>
     </>
   );
 }
