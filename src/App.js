@@ -36,6 +36,9 @@ class App extends Component {
 		}))
   }
 
+	toggleCompleted = todoId => {
+		console.log(todoId)
+	}
 
 
   //События инпут - получения данных из инпута! можно написать отдельно для каждого инпута метод
@@ -95,7 +98,11 @@ class App extends Component {
       <CounterTow initialValue={10} />
       <DropDown />
       <ColorPicker option={colorPickerOption} /> */}
-        <ToDoList todolist={todolist} onDeleteToDo={this.deleteToDo} /> 
+				<ToDoList
+					todolist={todolist}
+					onDeleteToDo={this.deleteToDo}
+					onToggleCompleted={this.toggleCompleted}	
+				/> 
         <p>Количество: {todolist.length}</p>
         <p>Количество выполненых: {completedToDo}</p>
         
