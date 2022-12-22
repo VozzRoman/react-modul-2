@@ -37,7 +37,18 @@ class App extends Component {
   }
 
 	toggleCompleted = todoId => {
-		console.log(todoId)
+    console.log(todoId)
+    this.setState(prevStae => ({
+      todolist: prevStae.todolist.map(todo => {
+        if (todo.id === todoId) {
+          return {
+            ...todo,
+            compledted: !todo.compledted,
+          };
+        }
+        return todo;
+      })
+    }))
 	}
 
 

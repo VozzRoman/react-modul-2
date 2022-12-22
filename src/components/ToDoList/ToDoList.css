@@ -1,0 +1,3 @@
+.TodoList__item--completed{
+    text-decoration-line: line-through;
+}
