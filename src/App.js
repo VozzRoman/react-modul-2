@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-
+import shortid from 'shortid';
 // import CounterTow from './components/CounterTwo/CounterTow';
 // import Counter from './components/Counter/Counter';
 // import ColorPicker from './components/ColorPicker/ColorPicker';
 // import './App.css';
 // import DropDown from './components/DropDown/DropDown';
 import ToDoList from './components/ToDoList'; //reexport 
+import ToDoEditor from './components/toDoEditor';
 
 // const colorPickerOption = [
 //   { lable: "red", color: "red" },
@@ -83,6 +84,18 @@ class App extends Component {
     event.preventDefault()
     console.log(this.state);
   }
+  addFromFormToToDo = text => { // добовляем из формы текст в ТоДоЛист
+    console.log(text);
+    const todo = {
+      id: shortid.generate(),
+      text, 
+      compledted: false,
+    }
+    this.setState(prevState => ({
+      todolist: [todo, ...prevState.todolist] 
+
+    }))
+  }
 
 	render() {
     const { todolist } = this.state // destructurisation 
@@ -92,7 +105,7 @@ class App extends Component {
     console.log(completedToDo);
 		return (
       <>
-        <form onSubmit={this.hendleSubmit}>
+        {/* <form onSubmit={this.hendleSubmit}>
           <label>
             Name
            <input type="text" name="name" value={this.state.name} onChange={this.hendleOnChange}></input>
@@ -102,13 +115,14 @@ class App extends Component {
            <input type="numbers" name="password" value={this.state.password} onChange={this.hendleOnChange}></input>
           </label>
           <button type='submit'>Отправить</button>
-        </form>
+        </form> */}
        
-      <h1>Состояние компонента</h1>
+      {/* <h1>Состояние компонента</h1> */}
       {/* <Counter initialValue={10} /> 
       <CounterTow initialValue={10} />
       <DropDown />
       <ColorPicker option={colorPickerOption} /> */}
+        <ToDoEditor textFromForm={this.addFromFormToToDo} />
 				<ToDoList
 					todolist={todolist}
 					onDeleteToDo={this.deleteToDo}
