@@ -1,4 +1,4 @@
-.TodoList__item--completed{
+.TodoList__item--completed p{
     text-decoration-line: line-through;
 }
 .Todolist{
@@ -16,4 +16,12 @@
     margin-top: 60px;
     margin-left: 20px;
     margin-right: 20px;
+}
+.TodoList__bth{
+    display: flex;
+    height: 40px;
+    justify-content: center;
+    text-align: center;
+    text-decoration-line: none;
+    background-color: aqua;
 }

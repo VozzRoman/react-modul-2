@@ -7,6 +7,7 @@ import shortid from 'shortid';
 // import DropDown from './components/DropDown/DropDown';
 import ToDoList from './components/ToDoList'; //reexport 
 import ToDoEditor from './components/toDoEditor';
+import Filter from './components/Filter/Filter';
 
 // const colorPickerOption = [
 //   { lable: "red", color: "red" },
@@ -26,7 +27,8 @@ class App extends Component {
 			{ id: 'id-4', text: 'Todo-4', compledted: true }
       ],
     name: "Привет я Реакт", // value инпут
-    password: ''
+    password: '',
+    filter: '',
 	}
 
 	deleteToDo = todoId => { // создаем методкласса для удаления туду по Айди
@@ -97,12 +99,25 @@ class App extends Component {
     }))
   }
 
+  //Метод фильтрация
+  changeFilter = e => {
+    this.setState({filter: e.currentTarget.value})
+  }
+
+  addVisibleToDo = () => {
+    const normalize = this.state.filter.toLowerCase();
+    return this.state.todolist.filter(todo => {
+      return todo.text.toLowerCase().includes(normalize);
+    })
+  }
+
 	render() {
     const { todolist } = this.state // destructurisation 
     const completedToDo = todolist.reduce((total, totdo) => {
       return totdo.compledted ? total + 1 : total
     }, 0)
     console.log(completedToDo);
+    const visibleListToDo = this.addVisibleToDo();
 		return (
       <>
         {/* <form onSubmit={this.hendleSubmit}>
@@ -123,8 +138,9 @@ class App extends Component {
       <DropDown />
       <ColorPicker option={colorPickerOption} /> */}
         <ToDoEditor textFromForm={this.addFromFormToToDo} />
+        <Filter value={this.state.filter} onChange={this.changeFilter} />
 				<ToDoList
-					todolist={todolist}
+					todolist={visibleListToDo}
 					onDeleteToDo={this.deleteToDo}
 					onToggleCompleted={this.toggleCompleted}	
 				/> 
